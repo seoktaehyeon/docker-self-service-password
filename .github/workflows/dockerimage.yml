@@ -6,7 +6,7 @@ on:
 env:
   ALI_REGISTRY: registry.cn-hangzhou.aliyuncs.com
   IMG_REPO: bxwill
-  IMG_NAME: img_name
+  IMG_NAME: ssp
 
 jobs:
 
