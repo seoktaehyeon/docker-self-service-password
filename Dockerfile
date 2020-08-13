@@ -9,10 +9,10 @@ RUN tar zvxf ltb-project-self-service-password-1.3.tar.gz && \
     
 FROM httpd:2
 COPY --from=ssp_tar /workspace/ssp/ /usr/local/apache2/htdocs/
-COPY --from=ssp_tar /workspace/mcrypt /opt/
+COPY --from=ssp_tar /workspace/mcrypt /opt/mcrypt
 
 RUN apt-get update && \
-    apt-get install -y php php-ldap php-mbstring #libmcrypt libmcrypt-devel mcrypt mhash && \
+    apt-get install -y php php-dev php-ldap php-mbstring #libmcrypt libmcrypt-devel mcrypt mhash && \
  #   cd mcypt-1.0.3 && \
   #  /usr/local/php/bin/phpize && \
   #  ./configure --with-php-config=/usr/local/php/bin/php-config && \
