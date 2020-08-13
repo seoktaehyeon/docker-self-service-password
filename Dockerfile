@@ -7,4 +7,4 @@ RUN tar zvxf ltb-project-self-service-password-1.3.tar.gz && \
 FROM httpd:2
 COPY --from=ssp_tar /workspace/ssp/* /usr/local/apache2/htdocs
 RUN yum update && \
-    yum install -y php php-ldap php-mbstring php-mcrypt
+    yum install -y php php-ldap php-mbstring #php-mcrypt
