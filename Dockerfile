@@ -12,9 +12,11 @@ COPY --from=ssp_tar /workspace/ssp/ /usr/local/apache2/htdocs/
 COPY --from=ssp_tar /workspace/mcrypt /opt/mcrypt
 
 RUN apt-get update && \
-    apt-get install -y php php-dev php-ldap php-mbstring #libmcrypt libmcrypt-devel mcrypt mhash && \
- #   cd mcypt-1.0.3 && \
-  #  /usr/local/php/bin/phpize && \
-  #  ./configure --with-php-config=/usr/local/php/bin/php-config && \
- #   make && make install
+    apt-get install -y php php-dev php-ldap php-mbstring libmcrypt-dev && \
+    cd /opt/mcypt && \
+    phpize && \
+    ./configure --with-php-config=/usr/bin/php-config && \
+    make && \
+    make install && \
+    echo 'extension=mcrypt.so' >> /etc/php/7.3/cli/php.ini
     
