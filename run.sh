@@ -9,4 +9,6 @@ do
     sed -i "s/.*${k,,} .*/\$${k,,} = ${v}/" $ssp_conf_file
 done
 
-httpd-foreground
+service apache2 start
+
+tail -f /var/log/apache2/access.log
