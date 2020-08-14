@@ -19,5 +19,6 @@ RUN apt-get update && \
     make && \
     make install && \
     echo 'extension=mcrypt.so' >> /etc/php/7.3/cli/php.ini && \
-    rm -rf /var/www/html/index.html
+    rm -rf /var/www/html/index.html && \
+    chmod +x run.sh
 CMD /run.sh
