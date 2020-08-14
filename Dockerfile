@@ -8,7 +8,7 @@ RUN tar zvxf ltb-project-self-service-password-1.3.tar.gz && \
     mv mcrypt-1.0.3 mcrypt
     
 FROM httpd:2
-COPY --from=ssp_tar /workspace/ssp/ /var/www/html/
+COPY --from=ssp_tar /workspace/ssp/ /usr/local/apache2/htdocs/
 COPY --from=ssp_tar /workspace/mcrypt/ /opt/mcrypt/
 COPY run.sh /run.sh
 RUN apt-get update && \
@@ -19,6 +19,6 @@ RUN apt-get update && \
     make && \
     make install && \
     echo 'extension=mcrypt.so' >> /etc/php/7.3/cli/php.ini && \
-    rm -rf /var/www/html/index.html && \
+    rm -rf /usr/local/apache2/htdocs/index.html && \
     chmod +x /run.sh
 CMD /run.sh

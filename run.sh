@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ssp_conf_file="/var/www/html/conf/conf.inc.php"
+ssp_conf_file="/usr/local/apache2/htdocs/conf/conf.inc.php"
 
 for kv in $(env | grep ^SSP_)
 do
