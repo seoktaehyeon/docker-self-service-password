@@ -1,4 +1,5 @@
-FROM httpd:2 AS ssp_tar
+#FROM httpd:2 AS ssp_tar
+FROM php:7.2-apache AS ssp_tar
 WORKDIR /workspace
 ADD https://ltb-project.org/archives/ltb-project-self-service-password-1.3.tar.gz .
 ADD http://pecl.php.net/get/mcrypt-1.0.3.tgz .
@@ -7,12 +8,14 @@ RUN tar zvxf ltb-project-self-service-password-1.3.tar.gz && \
     tar zvxf mcrypt-1.0.3.tgz && \
     mv mcrypt-1.0.3 mcrypt
     
-FROM httpd:2
+#FROM httpd:2
+FROM php:7.2-apache
 LABEL maintainer="v.stone@163.com" \
       organization="Assurance Sphere" 
 COPY --from=ssp_tar /workspace/ssp/ /var/www/html/
 COPY --from=ssp_tar /workspace/mcrypt/ /opt/mcrypt/
 COPY run.sh /run.sh
+ADD https://curl.haxx.se/ca/cacert.pem /
 RUN apt-get update && \
     apt-get install -y php php-dev php-ldap php-mbstring libmcrypt-dev libphp-phpmailer && \
     cd /opt/mcrypt && \
