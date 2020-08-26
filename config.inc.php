@@ -162,7 +162,6 @@ $answer_attribute = "info";
 $crypt_answers = true;
 
 # Extra questions (built-in questions are in lang/$lang.inc.php)
-#$messages['questions']['ice'] = "What is your favorite ice cream flavor?";
 
 ## Token
 # Use tokens?
