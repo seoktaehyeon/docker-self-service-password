@@ -10,7 +10,6 @@ RUN apt-get update && \
     rm -rf html ${SSP_PKG}.tar.gz && \
     mv ${SSP_PKG} html && \
     sed -i 's/unsplash-space.jpeg/matrix.jpg/' /var/www/html/conf/config.inc.php && \
-    sed -i 's#images/ltb-logo.png##' /var/www/html/conf/config.inc.php && \
-    chmod +x /run.sh
+    sed -i 's#images/ltb-logo.png##' /var/www/html/conf/config.inc.php
 COPY images/matrix.jpg images/matrix.jpg
 COPY images/favicon.ico images/favicon.ico
