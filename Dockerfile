@@ -1,7 +1,7 @@
-ARG SSP_PKG=ltb-project-self-service-password-1.3
 FROM php:7.2-apache
 LABEL maintainer="v.stone@163.com" \
       organization="Assurance Sphere"
+ENV SSP_PKG ltb-project-self-service-password-1.3
 RUN apt-get update && \
     apt-get install -y curl libicu-dev libldap2-dev libzip-dev && \
     cd /var/www && \
