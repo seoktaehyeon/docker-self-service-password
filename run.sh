@@ -3,7 +3,14 @@
 SSP_CONF="/var/www/html/conf/conf.inc.php"
 
 # Check config file
-[[ -f ${ENTRY_FILE} ]] || cp /opt/config.inc.php ${SSP_CONF}
+if [[ -f ${SSP_CONF} ]]; then
+	[[ -z "$(cat ${SSP_CONF})" ]] && {
+	    mv ${SSP_CONF} ${SSP_CONF}.$(date +%N)
+	    cp /opt/config.inc.php ${SSP_CONF}
+	}
+else
+    cp /opt/config.inc.php ${SSP_CONF}
+fi
 
 # Update config file
 for kv in $(env | grep ^SSP_)
