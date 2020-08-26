@@ -1,7 +1,8 @@
 FROM php:7.3-apache
 LABEL maintainer="v.stone@163.com" \
       organization="Assurance Sphere"
-RUN sspPkg="ltb-project-self-service-password-1.3" && \
+COPY run.sh /usr/local/bin/run.sh
+RUN sspPkg="ltb-project-self-service-password-1.4" && \
     buildDeps="libbz2-dev libsasl2-dev libcurl4-gnutls-dev" && \
     runtimeDeps="curl libicu-dev libldap2-dev libzip-dev" && \
     apt-get update && \
@@ -19,7 +20,10 @@ RUN sspPkg="ltb-project-self-service-password-1.3" && \
     rm -rf html ${sspPkg}.tar.gz && \
     mv ${sspPkg} html && \
     sed -i 's/unsplash-space.jpeg/matrix.jpg/' /var/www/html/conf/config.inc.php && \
-    sed -i 's#images/ltb-logo.png##' /var/www/html/conf/config.inc.php
+    sed -i 's#images/ltb-logo.png##' /var/www/html/conf/config.inc.php && \
+    cp /var/www/html/conf/config.inc.php /opt/config.inc.php && \
+    chmod +x /usr/local/bin/run.sh
 WORKDIR /var/www/html
 COPY images/matrix.jpg images/matrix.jpg
 COPY images/favicon.ico images/favicon.ico
+ENTRYPOINT run.sh
