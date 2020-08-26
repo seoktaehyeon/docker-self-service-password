@@ -1,7 +1,6 @@
 FROM php:7.3-apache
 LABEL maintainer="v.stone@163.com" \
       organization="Assurance Sphere"
-COPY run.sh /usr/local/bin/run.sh
 RUN sspPkg="ltb-project-self-service-password-1.3" && \
     buildDeps="libbz2-dev libsasl2-dev libcurl4-gnutls-dev" && \
     runtimeDeps="curl libicu-dev libldap2-dev libzip-dev" && \
