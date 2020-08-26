@@ -11,5 +11,6 @@ RUN apt-get update && \
     mv ${SSP_PKG} html && \
     sed -i 's/unsplash-space.jpeg/matrix.jpg/' /var/www/html/conf/config.inc.php && \
     sed -i 's#images/ltb-logo.png##' /var/www/html/conf/config.inc.php
+WORKDIR /var/www/html
 COPY images/matrix.jpg images/matrix.jpg
 COPY images/favicon.ico images/favicon.ico

@@ -1,14 +1,11 @@
 #!/bin/bash
 
-ssp_conf_file="/var/www/html/conf/conf.inc.php"
+SSP_CONF="/var/www/html/conf/conf.inc.php"
 
 for kv in $(env | grep ^SSP_)
 do
     k=$(echo "$kv" | awk -F '=' '{print $1}' | awk -F '^SSP_' '{print $2}')
     v=$(echo "$kv" | awk -F '=' '{print $2}')
-    sed -i "s/{k,,} =.*/${k,,} = '${v}';/" $ssp_conf_file
+    sed -i "s/{k,,} =.*/${k,,} = '${v}';/" $SSP_CONF
 done
 
-service apache2 start
-
-tail -f /var/log/apache2/access.log
