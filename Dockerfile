@@ -1,4 +1,4 @@
-ENV SSP_PKG ltb-project-self-service-password-1.3
+ARG SSP_PKG=ltb-project-self-service-password-1.3
 FROM php:7.2-apache
 LABEL maintainer="v.stone@163.com" \
       organization="Assurance Sphere"
