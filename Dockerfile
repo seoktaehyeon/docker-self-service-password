@@ -20,10 +20,7 @@ RUN sspPkg="ltb-project-self-service-password-1.3" && \
     rm -rf html ${sspPkg}.tar.gz && \
     mv ${sspPkg} html && \
     sed -i 's/unsplash-space.jpeg/matrix.jpg/' /var/www/html/conf/config.inc.php && \
-    sed -i 's#images/ltb-logo.png##' /var/www/html/conf/config.inc.php && \
-    cp /var/www/html/conf/config.inc.php /opt/config.inc.php && \
-    chmod +x /usr/local/bin/run.sh
+    sed -i 's#images/ltb-logo.png##' /var/www/html/conf/config.inc.php
 WORKDIR /var/www/html
 COPY images/matrix.jpg images/matrix.jpg
 COPY images/favicon.ico images/favicon.ico
-ENTRYPOINT run.sh
